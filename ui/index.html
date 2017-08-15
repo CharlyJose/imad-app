@@ -1,72 +1,27 @@
-<!--
+var express = require('express');
+var morgan = require('morgan');
+var path = require('path');
+
+var app = express();
+app.use(morgan('combined'));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
+
+app.get('/ui/madi.png', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
 
 
-<!doctype html>
-<html>
-    <head>
-        <link href="/ui/style.css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="center">
-            <img src="/ui/madi.png" class="img-medium"/>
-        </div>
-        <br>
-        <div class="center text-big bold">
-            Hi! I am your webapp. why not working!!!!
-        </div>
-        <script type="text/javascript" src="/ui/main.js">
-        </script>
-    </body>
-</html>
+// Do not change port, otherwise your app won't run on IMAD servers
+// Use 8080 only for local development if you already have apache running on 80
 
-
--->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>My IMAD profile</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="static/style.css">
-</head>
-<body>
-  <div class="container text-center full-height">
-    <div class="row content">
-      <div class="col-sm-4 sidenav">
-        <div class="thumbnail">
-          <!-- Change the link in the src attribute below to an image available on the Internet -->
-          <img src="https://lh3.googleusercontent.com/n1c7eElZHEqBq67NrxMwWmek5ldWTm9kQvKtoQKB8-MHoi64zC3w6bBGWa38mxdJJwd00wu38XHQiUbrDV06KnoMoJZp313L0yw" alt="Lights" style="width:100%" />
-        </div>
-        <h2 align="center"><b>Charly Jose</b></h2>
-        <p align="center">Student,<br>MITS,<br>Kochi.</p>
-      </div>
-
-      <div class="col-sm-8 text-left">
-        <h3>About me</h3>
-        <p>Thinker, dreamer and a budding listener :)</p>
-        <hr>
-        <h3>Education</h3>
-        <p>Currently doing B.Tech in Computer Science at MITS, Varikoli.</p>
-        <hr>
-        <h3>Experience</h3>
-        <p>A <b>little</b> of C++, C, Java, Python, Javascript, HTML and CSS. To show up my honesty.</p>
-        <hr>
-        <h3>A cool thing I've done recently</h3>
-        <p>Started eating fatty foods to build some meat.<p>
-        <hr>
-         <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="I just built #myfirstapp with #imad! @HasuraEd. Check it out here - " data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-         <iframe id="fb_share" src="" width="84" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-         <script>
-            var current_url = window.location.href;
-            document.getElementById("fb_share").src="https://www.facebook.com/plugins/share_button.php?href="+current_url+"&layout=button_count&size=large&mobile_iframe=true&appId&width=84&height=28";
-         </script>
-      </div>
-    </div>
-  </div>
-
-  <footer class="container-fluid text-center footer">
-   If I try my best and fail, well I've tried my best. - Steve Jobs
-  </footer>
-</body>
-</html>
+var port = 80;
+app.listen(port, function () {
+  console.log(`IMAD course app listening on port ${port}!`);
+});
